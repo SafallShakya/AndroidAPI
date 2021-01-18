@@ -1,15 +1,15 @@
 const mongoose=require('mongoose');
 
-const Book=mongoose.model('Book',{
-    book_name:{
+const Admin=mongoose.model('Admin',{
+    admin_name:{
         type:String
     },
-    book_author:{
+    admin_email:{
         type:String
     },
-    book_pub_date:{
+    admin_password:{
         type:String
     }
 
 });
-module.exports=Book;
+module.exports=Admin;

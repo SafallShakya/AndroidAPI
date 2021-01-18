@@ -6,6 +6,12 @@ const User=mongoose.model('User',{
     },
     address:{
         type:String
+    },
+    email:{
+        type:String
+    },
+    password:{
+        type:String
     }
 })
 module.exports=User;

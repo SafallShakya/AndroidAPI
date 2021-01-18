@@ -2,13 +2,19 @@ const express=require('express');
 const router=express.Router();
 const User=require('../models/user_model');
 
-router.post('/api_insert',function(req,res){
+router.post('/user_insert',function(req,res){
     const us=req.body.us;
     const add= req.body.add;
-    const data=new User({
+    const email=req.body.email;
+    const password=req.body.password;
+    const data=new User(
+        {
         username:us,
-        address:add
-    });
+        address:add,
+        email:email,
+        password:password
+    }
+    );
     data.save();
     // console.log(us);
     // console.log(add);
