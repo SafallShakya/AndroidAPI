@@ -1,17 +1,29 @@
 const mongoose=require('mongoose');
 
 const User=mongoose.model('User',{
-    username:{
+    user_username:{
+        type : String,
+        required : true
+    },
+    user_contactno:{
+        type:String,
+        required : true
+    },
+    user_email:{
+        type:String,
+        required : true
+    },
+    user_password:{
+        type:String,
+        required : true
+    },
+    user_role:{
+        type:String,
+        enum : ["Admin","User"],
+        default : "User"
+    },
+    user_image:{
         type:String
     },
-    address:{
-        type:String
-    },
-    email:{
-        type:String
-    },
-    password:{
-        type:String
-    }
 })
 module.exports=User;

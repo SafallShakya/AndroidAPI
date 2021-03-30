@@ -2,13 +2,16 @@ const mongoose=require('mongoose');
 
 const Admin=mongoose.model('Admin',{
     admin_name:{
-        type:String
+        type:String,
+        required : true
     },
     admin_email:{
-        type:String
+        type:String,
+        required : true
     },
     admin_password:{
-        type:String
+        type:String,
+        required : true
     }
 
 });
