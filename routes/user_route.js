@@ -81,7 +81,8 @@ router.post('/user/login', function(req, res){
            return res.status(200).json({
                success : true,
                message : "All success!",
-               token : token
+               token : token,
+               usertype:userData.user_role
            })
         })
 
