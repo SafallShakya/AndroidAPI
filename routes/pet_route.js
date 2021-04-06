@@ -126,7 +126,7 @@ router.get('/pet/show',function(req,res){
 })
 
 router.get('/pet/singleshow/:id',
-auth.verifyUser,
+//auth.verifyUser,
 function(req,res){
     const pet_id = req.params.id;
     Pet.findOne({_id:pet_id}).then(function(data){
