@@ -80,7 +80,8 @@ router.post('/user/login', function(req, res){
                success : true,
                message : "All success!",
                token : token,
-               usertype:userData.user_role
+               usertype:userData.user_role,
+               userid:userData._id
            })
         })
 
@@ -121,5 +122,14 @@ router.put('/user/update/:id',function(req,res){
 
 })
 
+router.get('/user/singleshow/:id',function(req,res){
+    const user_id = req.params.id;
+    User.findOne({_id:user_id})
+    .then(function(data){
+        res.status(200).json(data)
+    }).catch(function(e){
+        res.status(500).json({error : e})
+    })
+})
 
 module.exports=router;
