@@ -22,8 +22,5 @@ const User=mongoose.model('User',{
         enum : ["Admin","User"],
         default : "User"
     },
-    user_image:{
-        type:String
-    },
 })
 module.exports=User;

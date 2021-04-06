@@ -130,7 +130,8 @@ router.get('/product/show',function(req,res){
 
 router.get('/product/singleshow/:id',function(req,res){
     const product_id = req.params.id;
-    Product.findOne({_id:product_id}).then(function(data){
+    Product.findOne({_id:product_id})
+    .then(function(data){
         res.status(200).json(data)
     }).catch(function(e){
         res.status(500).json({error : e})

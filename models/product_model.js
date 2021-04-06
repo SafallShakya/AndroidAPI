@@ -11,11 +11,10 @@ const Product=mongoose.model('Product',{
     },
     product_desc:{
         type:String,
-        required : true
     },
     product_img:{
         type:String,
-     required : true
+        required : true
     },
 })
 module.exports=Product;

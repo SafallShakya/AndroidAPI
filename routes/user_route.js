@@ -23,7 +23,6 @@ router.post('/user/insert',[
         const user_email=req.body.user_email;
         const user_password=req.body.user_password;
         const user_role = req.body.user_role;
-        const user_image = req.body.user_image
         bcryptjs.hash(user_password, 10, function(err, hash){
             const data=new User(
                 {
@@ -32,7 +31,6 @@ router.post('/user/insert',[
                     user_email:user_email,
                     user_password:hash,
                     user_role:user_role,
-                    user_image:user_image
                     
             }
             );
@@ -89,8 +87,6 @@ router.post('/user/login', function(req, res){
     })
     .catch(function(e){
         res.status(500).json({message : e})
-
-
     })
 
 })
