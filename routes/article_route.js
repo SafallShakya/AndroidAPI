@@ -8,7 +8,7 @@ const auth = require('../middleware/auth')
 
 
 
-router.post('/article/insert',//auth.verifyUser, auth.verifyAdmin, 
+router.post('/article/insert',auth.verifyUser, auth.verifyAdmin, 
 [
     check('article_title','Title is required').not().isEmpty(),
     check('article_body','Content is required').not().isEmpty(),
@@ -51,7 +51,9 @@ router.get('/article/show',function(req,res){
     })
 })
 
-router.delete('/article/delete/:id', function(req,res){
+router.delete('/article/delete/:id',
+auth.verifyUser, auth.verifyAdmin, 
+ function(req,res){
     const id22=req.params.id;
     Article.deleteOne({_id:id22})
     .then(function(){
@@ -77,7 +79,7 @@ router.delete('/article/delete/:id', function(req,res){
 
 // })
 router.put('/article/update/:id', 
-// auth.verifyUser, auth.verifyAdmin,
+ auth.verifyUser, auth.verifyAdmin,
 function(req,res){
     const article_title = req.body.article_title
     const article_body = req.body.article_body
@@ -101,7 +103,9 @@ router.get('/article/show',function(req,res){
     })
 })
 
-router.get('/article/singleshow/:id',function(req,res){
+router.get('/article/singleshow/:id',
+auth.verifyUser,  
+function(req,res){
     const article_id = req.params.id;
     Article.findOne({_id:article_id}).then(function(data){
         res.status(200).json(data)

@@ -13,11 +13,15 @@ module.exports.verifyUser = function(req, res, next){
             next()
         })
         .catch(function(e){
+            console.log("inside try")
             res.status(401).json({error : e})
+            
         })  
     }
     catch(e){
+        console.log("no try")
         res.status(401).json({error : e})
+        
     }    
 }
 //1. get token from client
@@ -30,10 +34,10 @@ module.exports.verifyUser = function(req, res, next){
 
 module.exports.verifyAdmin = function(req,res,next){
     if(!req.user){
-        return res.status(401).json({message : "Unauthorized"})
+        return res.status(401).json({message : "Unauthorized(Not logged in)"})
     }
     else if(req.user.role != "Admin"){
-        return res.status(401).json({message : "Unauthorized"})
+        return res.status(401).json({message : "Unauthorized(Not Admin)"})
     }
     next()
 }

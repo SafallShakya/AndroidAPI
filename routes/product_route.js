@@ -8,8 +8,8 @@ const auth = require('../middleware/auth')
 const upload = require('../middleware/fileupload')
 
 router.post('/product/insert', 
-// auth.verifyUser, 
-// auth.verifyAdmin,
+auth.verifyUser, 
+auth.verifyAdmin,
 upload.single('product_img'),[
     check('product_name','Username is required').not().isEmpty(),
     check('product_price','Price is required').not().isEmpty(),
@@ -85,7 +85,7 @@ else{
 
 //update sir ko pachadi ko wala
 router.put('/product/update/:id', 
-// auth.verifyUser, auth.verifyAdmin,
+auth.verifyUser, auth.verifyAdmin,
 function(req,res){
     const product_name = req.body.product_name
     const product_price = req.body.product_price
@@ -105,7 +105,7 @@ function(req,res){
 })
 
 router.delete('/product/delete/:id',
-//   auth.verifyUser, auth.verifyAdmin,
+auth.verifyUser, auth.verifyAdmin,
    function(req,res){
     const id = req.params.id;
     Product.deleteOne({_id:id})
@@ -128,7 +128,9 @@ router.get('/product/show',function(req,res){
     })
 })
 
-router.get('/product/singleshow/:id',function(req,res){
+router.get('/product/singleshow/:id',
+auth.verifyUser,
+function(req,res){
     const product_id = req.params.id;
     Product.findOne({_id:product_id})
     .then(function(data){

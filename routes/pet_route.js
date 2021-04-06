@@ -7,7 +7,8 @@ const jwt = require('jsonwebtoken');
 const auth = require('../middleware/auth')
 const upload = require('../middleware/fileupload')
 
-router.post('/pet/insert', upload.single('pet_img'),//auth.verifyUser, auth.verifyAdmin, 
+router.post('/pet/insert', upload.single('pet_img'),
+auth.verifyUser, auth.verifyAdmin, 
 [
     check('pet_name','Pet name is required').not().isEmpty(),
     check('pet_species','Species is required').not().isEmpty(),
@@ -65,7 +66,7 @@ else{
 
 
 router.delete('/pet/delete/:id',  
-// auth.verifyUser, auth.verifyAdmin,
+auth.verifyUser, auth.verifyAdmin,
 function(req,res){
     const id=req.params.id;
     Pet.deleteOne({_id:id})
@@ -91,7 +92,7 @@ function(req,res){
 
 // })
 router.put('/pet/update/:id', 
-// auth.verifyUser, auth.verifyAdmin,
+auth.verifyUser, auth.verifyAdmin,
 function(req,res){
     const pet_name = req.body.pet_name
     const pet_species = req.body.pet_species
@@ -124,7 +125,9 @@ router.get('/pet/show',function(req,res){
     })
 })
 
-router.get('/pet/singleshow/:id',function(req,res){
+router.get('/pet/singleshow/:id',
+auth.verifyUser,
+function(req,res){
     const pet_id = req.params.id;
     Pet.findOne({_id:pet_id}).then(function(data){
         res.status(200).json(data)

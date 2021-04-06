@@ -107,7 +107,8 @@ router.delete('/user/delete/:id', function(req,res){
 
 })
 
-router.put('/user/update/:id',function(req,res){
+router.put('/user/update/:id',
+auth.verifyUser,function(req,res){
     const id=req.params.id;
     User.updateOne({_id:id},req.body).then(function(){
         res.status(200).json({
@@ -122,7 +123,9 @@ router.put('/user/update/:id',function(req,res){
 
 })
 
-router.get('/user/singleshow/:id',function(req,res){
+router.get('/user/singleshow/:id',
+auth.verifyUser,
+function(req,res){
     const user_id = req.params.id;
     User.findOne({_id:user_id})
     .then(function(data){
