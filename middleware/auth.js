@@ -5,7 +5,9 @@ const User = require('../models/user_model');
 module.exports.verifyUser = function(req, res, next){
     try{
         const token = req.headers.authorization.split(" ")[1]
+        console.log(token)
         const data = jwt.verify(token, 'anysecretkey');
+        console.log(data)
         //in this data id is available
         User.findOne({_id : data.userID})
         .then(function(userData){
@@ -33,10 +35,11 @@ module.exports.verifyUser = function(req, res, next){
 
 
 module.exports.verifyAdmin = function(req,res,next){
+    console.log(req.user)
     if(!req.user){
         return res.status(401).json({message : "Unauthorized(Not logged in)"})
     }
-    else if(req.user.role != "Admin"){
+    else if(req.user.user_role != "Admin"){
         return res.status(401).json({message : "Unauthorized(Not Admin)"})
     }
     next()

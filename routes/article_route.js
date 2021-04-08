@@ -104,7 +104,7 @@ router.get('/article/show',function(req,res){
 })
 
 router.get('/article/singleshow/:id',
-auth.verifyUser,  
+//auth.verifyUser,  
 function(req,res){
     const article_id = req.params.id;
     Article.findOne({_id:article_id}).then(function(data){

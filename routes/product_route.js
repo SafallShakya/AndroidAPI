@@ -129,7 +129,7 @@ router.get('/product/show',function(req,res){
 })
 
 router.get('/product/singleshow/:id',
-auth.verifyUser,
+//auth.verifyUser,
 function(req,res){
     const product_id = req.params.id;
     Product.findOne({_id:product_id})

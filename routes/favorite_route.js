@@ -8,7 +8,8 @@ const auth = require('../middleware/auth');
 
 
 
-router.post('/favorite/insert',//auth.verifyUser, 
+router.post('/favorite/insert',
+auth.verifyUser, 
 function(req,res){
 
     const errors = validationResult(req)
@@ -49,7 +50,7 @@ router.get('/favorite/show/',function(req,res){
 })
 
 router.delete('/favorite/delete/:id',
-// auth.verifyUser,
+auth.verifyUser,
  function(req,res){
     const id22=req.params.id;
     Favorite.deleteOne({_id:id22})
@@ -65,7 +66,7 @@ router.delete('/favorite/delete/:id',
 
 
 router.get('/favorite/singleshow/:userid',
-// auth.verifyUser,  
+auth.verifyUser,  
 async function(req,res){
     const fav_user_id = req.params.userid;
     console.log(fav_user_id)
@@ -81,7 +82,7 @@ async function(req,res){
 
 
 router.get('/favorite/check/:userid/:petid',
-// auth.verifyUser,  
+auth.verifyUser,  
 async function(req,res){
     const fav_user_id = req.params.userid;
     const fav_pet_id = req.params.petid;

@@ -99,7 +99,9 @@ router.get('/user/show',function(req,res){
     })
 })
 
-router.delete('/user/delete/:id', function(req,res){
+router.delete('/user/delete/:id', 
+auth.verifyUser,
+function(req,res){
     const id22=req.params.id;
     User.deleteOne({_id:id22}).then(function(){
         res.send("deleted!!");
@@ -108,7 +110,8 @@ router.delete('/user/delete/:id', function(req,res){
 })
 
 router.put('/user/update/:id',
-auth.verifyUser,function(req,res){
+auth.verifyUser,
+function(req,res){
     const id=req.params.id;
     User.updateOne({_id:id},req.body).then(function(){
         res.status(200).json({
