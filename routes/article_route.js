@@ -108,7 +108,11 @@ router.get('/article/singleshow/:id',
 function(req,res){
     const article_id = req.params.id;
     Article.findOne({_id:article_id}).then(function(data){
-        res.status(200).json(data)
+        res.status(200).json(
+            {
+                success:true,data:[data]
+            }
+        )
     }).catch(function(e){
         res.status(500).json({error : e})
     })

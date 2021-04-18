@@ -81,7 +81,8 @@ router.post('/user/login', function(req, res){
                message : "All success!",
                token : token,
                usertype:userData.user_role,
-               userid:userData._id
+               userid:userData._id,
+               data  : userData
            })
         })
 

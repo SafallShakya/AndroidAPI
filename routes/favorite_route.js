@@ -8,14 +8,12 @@ const auth = require('../middleware/auth');
 
 
 
+
 router.post('/favorite/insert',
 auth.verifyUser, 
 function(req,res){
-
     const errors = validationResult(req)
-    
     if(errors.isEmpty()){
-        
         const user_id=req.body.user_id;
         const pet_id= req.body.pet_id;
             const data=new Favorite(
@@ -86,7 +84,6 @@ auth.verifyUser,
 async function(req,res){
     const fav_user_id = req.params.userid;
     const fav_pet_id = req.params.petid;
-
     await Favorite.find({pet_id:fav_pet_id, user_id:fav_user_id})
     .then(function(data){ 
         res.status(200).json({data:data})

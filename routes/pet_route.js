@@ -76,14 +76,14 @@ function(req,res){
 
 })
 
+
 // router.put('pet/update/:id',function(req,res){
 //     const id=req.params.id;
 //     Pet.updateOne({_id:id},req.body).then(function(){
 //         res.status(200).json({
 //             success : true,
 //             message:"Success"
-//         })
-    
+//         })    
 //     }).catch((error)=>{
 //         res.status(404).json({
 //             error:"error"
@@ -91,6 +91,8 @@ function(req,res){
 //     })
 
 // })
+
+
 router.put('/pet/update/:id', 
 auth.verifyUser, auth.verifyAdmin,
 function(req,res){
@@ -130,7 +132,11 @@ router.get('/pet/singleshow/:id',
 function(req,res){
     const pet_id = req.params.id;
     Pet.findOne({_id:pet_id}).then(function(data){
-        res.status(200).json(data)
+        res.status(200).json(
+            {
+                success:true,data:[data]
+            }
+        )
     }).catch(function(e){
         res.status(500).json({error : e})
     })
