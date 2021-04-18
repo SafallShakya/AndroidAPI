@@ -82,7 +82,7 @@ router.post('/user/login', function(req, res){
                token : token,
                usertype:userData.user_role,
                userid:userData._id,
-               data  : userData
+               data  : [userData]
            })
         })
 
@@ -110,11 +110,12 @@ function(req,res){
 
 })
 
-router.put('/user/update/:id',
+router.put('/user/update/',
 auth.verifyUser,
 function(req,res){
-    const id=req.params.id;
-    User.updateOne({_id:id},req.body).then(function(){
+    console.log(req.body)
+    const id=req.user._id;
+    User.findOneAndUpdate({_id:id},{$set : {...req.body}}).then(function(){
         res.status(200).json({
             message:"Success"
         })

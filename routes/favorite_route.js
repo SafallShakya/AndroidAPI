@@ -13,9 +13,10 @@ router.post('/favorite/insert',
 auth.verifyUser, 
 function(req,res){
     const errors = validationResult(req)
-    if(errors.isEmpty()){
-        const user_id=req.body.user_id;
-        const pet_id= req.body.pet_id;
+    if(errors.isEmpty()){ 
+        console.log(req.body)
+        const user_id=req.user._id;
+        const pet_id= req.body.petId;
             const data=new Favorite(
                 {
                     user_id:user_id,
